@@ -1,0 +1,178 @@
+<!-- SENTENCES -->
+{{FrontSide}}
+<div class="sentence-translation">{{sentence english}}</div>
+
+<hr class="answer" id="answer"/>
+
+<div class="back">
+	<div class="left">
+		<!-- WORD -->
+		<div class="ruby japanese word">
+			<a href="https://jisho.org/search/{{word japanese}}">{{furigana:word furigana}}</a>
+		</div>
+
+		<!-- AUDIO -->
+		<div class="autoplay-word">{{word audio}}</div>
+
+		<!-- WORD TYPE -->
+		<div class="japanese type ruby-hover" id="type"></div>
+
+		<!-- ENGLISH -->
+		<div class="english">
+			<div id="english"></div>
+			{{#notes}}<div class="note">{{notes}}</div>{{/notes}}
+		</div>
+	</div>
+	<div class="right">
+		<!-- IMAGE -->
+		{{#image}}<div class="image">{{image}}</div>{{/image}}
+	</div>
+</div>
+
+<script>
+	function parse_english_word() {
+		let text = `{{word english}}`;	
+		let words = text.split("; ");
+		let english = document.getElementById("english");
+		words.forEach(word => {
+			let div = document.createElement("span");
+			div.textContent = word;
+			div.classList.add("english-word");
+			english.appendChild(div);
+
+ 			if (word !== words[words.length - 1]) {
+				english.appendChild(document.createTextNode("; "));
+			}
+		});
+	}
+
+	function get_type() {
+		let type = `{{word type}}`;
+		type = type.toLowerCase();
+		let english = "";
+		const span = document.getElementById("type");
+		const ruby = document.createElement("ruby");
+		const rb = document.createElement("rb");
+		const rt = document.createElement("rt");
+
+		switch (type) {
+		case "n":
+			type = "名詞";
+			english = "noun";
+			break;
+		case "1-v":
+			type = "一段動詞";
+			english = "one-stem verb";
+			break;
+		case "5-v":
+			type = "五段動詞";
+			english = "five-stem verb";
+			break;
+		case "i-adj":
+			type = "形容詞";
+			english = "い-adjective";
+			break;
+		case "na-adj":
+			type = "形容動詞";
+			english = "な-adjective";
+			break;
+		case "adv":
+			type = "副詞";
+			english = "adverb";
+			break;
+		case "pron":
+			type = "代名詞";
+			english = "pronoun";
+			break;
+		case "prep":
+			type = "前置詞";
+			english = "preposition";
+			break;
+		case "conj":
+			type = "接続詞";
+			english = "conjunction";
+			break;
+		case "interj":
+			type = "感嘆詞";
+			english = "interjection";
+			break;
+		case "det":
+			type = "限定詞";
+			english = "determiner";
+			break;
+		case "q":
+			type = "助数詞";
+			english = "quantifier";
+			break;
+		case "phr":
+			type = "句";
+			english = "phrase";
+			break;
+		case "idm":
+			type = "成句";
+			english = "idiom";
+			break;
+		case "pref":
+			type = "接頭辞";
+			english = "prefix";
+			break;
+		case "suff":
+			type = "接尾辞";
+			english = "suffix";
+			break;
+		case "part":
+			type = "助詞";
+			english = "particle";
+			break;
+		case "onom":
+			type = "擬音語";
+			english = "onomatopoeia";
+			// Imitating real sounds - e.g. ワンワン (woof woof)
+			break;
+		case "mim":
+			type = "擬態語";
+			english = "mimesis";
+			// Imitating conditions, not real sounds - e.g. ニコニコ (smiling)
+			break;
+		default:
+			type = "ERROR";
+			english = "unknown";
+		}
+
+		rb.textContent = type;
+		rt.textContent = english;
+		ruby.appendChild(rb);
+		ruby.appendChild(rt);
+		span.appendChild(document.createTextNode("【 "));
+    	span.appendChild(ruby);
+    	span.appendChild(document.createTextNode(" 】"));
+	}
+
+    function image_fullscreen() {
+        const image_container = document.createElement("div");
+        const imgPopupImg = document.createElement("img");
+				image_container.classList.add("fullscreen");
+
+				document.querySelectorAll('.image img').forEach(image => {
+        		image.addEventListener("click", () => {
+                	image_container.classList.add("fullscreen");
+               		imgPopupImg.src = image.src;
+              		image_container.appendChild(imgPopupImg);
+            	document.body.appendChild(image_container);
+            });
+        });
+
+        image_container.addEventListener('click', function () {
+            document.body.removeChild(image_container);  // Close when clicked
+        });
+    }
+
+	function autoplay() {
+		var elem = document.querySelector(".autoplay-word .soundLink, .autoplay-word .replaybutton")?.click();
+	}
+
+	parse_english_word();
+	get_type();
+	image_fullscreen();
+	autoplay();
+</script>
