@@ -1,0 +1,157 @@
+<!-- SENTENCES -->
+{{FrontSide}}
+<div class="sentence-translation">{{sentence english}}</div>
+
+<hr class="answer" id="answer"/>
+
+<div class="back">
+	<div class="left">
+		<!-- WORD -->
+		<div class="word">
+			<a href="https://www.larousse.fr/dictionnaires/francais-anglais/{{word french}}">{{word french}}</a>
+		</div>
+
+		<!-- AUDIO -->
+		<div class="autoplay-word">{{word audio}}</div>
+
+		<!-- WORD TYPE -->
+		<div class="type ruby-hover" id="type"></div>
+
+		<!-- ENGLISH -->
+		<div class="english">
+			<div id="english"></div>
+			{{#notes}}<div class="note">{{notes}}</div>{{/notes}}
+		</div>
+	</div>
+	<div class="right">
+		<!-- IMAGE -->
+		{{#image}}<div class="image">{{image}}</div>{{/image}}
+	</div>
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+	function parse_english_word() {
+		let text = `{{word english}}`;	
+		let words = text.split("; ");
+		let english = document.getElementById("english");
+		words.forEach(word => {
+			let div = document.createElement("span");
+			div.textContent = word;
+			div.classList.add("english-word");
+			english.appendChild(div);
+
+ 			if (word !== words[words.length - 1]) {
+				english.appendChild(document.createTextNode("; "));
+			}
+		});
+	}
+
+	function get_type() {
+		let type = `{{word type}}`;
+		type = type.toLowerCase();
+		let english = "";
+		const span = document.getElementById("type");
+		const ruby = document.createElement("ruby");
+		const rb = document.createElement("rb");
+		const rt = document.createElement("rt");
+
+		switch (type) {
+		case "n":
+			type = "nom";
+			english = "noun";
+			break;
+		case "v":
+			type = "<TBA>";
+			english = "verb";
+			break;
+		case "adj":
+			type = "<TBA>";
+			english = "adjective";
+			break;
+		case "adv":
+			type = "<TBA>";
+			english = "adverb";
+			break;
+		case "pron":
+			type = "<TBA>";
+			english = "pronoun";
+			break;
+		case "prep":
+			type = "<TBA>";
+			english = "preposition";
+			break;
+		case "conj":
+			type = "<TBA>";
+			english = "conjunction";
+			break;
+		case "interj":
+			type = "<TBA>";
+			english = "interjection";
+			break;
+		case "det":
+			type = "<TBA>";
+			english = "determiner";
+			break;
+		case "phr":
+			type = "<TBA>";
+			english = "phrase";
+			break;
+		case "idm":
+			type = "<TBA>";
+			english = "idiom";
+			break;
+		case "pref":
+			type = "<TBA>";
+			english = "prefix";
+			break;
+		case "suff":
+			type = "<TBA>";
+			english = "suffix";
+			break;
+		case "part":
+			type = "<TBA>";
+			english = "particle";
+			break;
+		default:
+			type = "ERROR";
+			english = "unknown";
+		}
+
+		rb.textContent = type;
+		rt.textContent = english;
+		ruby.appendChild(rb);
+		ruby.appendChild(rt);
+		span.appendChild(document.createTextNode("- "));
+		span.appendChild(document.createTextNode(type));
+		span.appendChild(document.createTextNode(" -"));
+	}
+
+    function image_fullscreen() {
+        const image_container = document.createElement("div");
+        const imgPopupImg = document.createElement("img");
+				image_container.classList.add("fullscreen");
+
+				document.querySelectorAll('.image img').forEach(image => {
+        		image.addEventListener("click", () => {
+                	image_container.classList.add("fullscreen");
+               		imgPopupImg.src = image.src;
+              		image_container.appendChild(imgPopupImg);
+            	document.body.appendChild(image_container);
+            });
+        });
+
+        image_container.addEventListener('click', function () {
+            document.body.removeChild(image_container);  // Close when clicked
+        });
+    }
+
+	function autoplay() {
+		var elem = document.querySelector(".autoplay-word .soundLink, .autoplay-word .replaybutton")?.click();
+	}
+
+	parse_english_word();
+	get_type();
+	image_fullscreen();
+	autoplay();
+</script>
