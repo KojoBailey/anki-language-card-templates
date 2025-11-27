@@ -10,20 +10,11 @@ Alternatively, I've made example decks you can import which will add the cards a
 
 If you do want to do it manually or are just curious, these are the fields used in each language's template:
 
-### Japanese
-1. sentence japanese
-2. sentence furigana
-3. sentence audio
-4. sentence english
-5. word japanese
-6. word furigana
-7. word audio
-8. word english
-9. word type
-10. notes
-11. image
-
-### Chinese
+<details>
+<summary>
+<h3>Chinese</h3>
+</summary>
+  
 1. sentence chinese
 2. sentence pinyin
 3. sentence audio
@@ -35,19 +26,13 @@ If you do want to do it manually or are just curious, these are the fields used 
 9. word type
 10. notes
 11. image
+</details>
 
-### Spanish
-1. sentence spaninsh
-2. sentence audio
-3. sentence english
-4. word spanish
-5. word audio
-6. word english
-7. word type
-8. notes
-9. image
+<details>
+<summary>
+<h3>French</h3>
+</summary>
 
-### French
 1. sentence french
 2. sentence audio
 3. sentence english
@@ -57,3 +42,38 @@ If you do want to do it manually or are just curious, these are the fields used 
 7. word type
 8. notes
 9. image
+</details>
+
+<details>
+<summary>
+<h3>Japanese</h3>
+</summary>
+  
+1. sentence japanese
+2. sentence furigana
+3. sentence audio
+4. sentence english
+5. word japanese
+6. word furigana
+7. word audio
+8. word english
+9. word type
+10. notes
+11. image
+</details>
+
+<details>
+<summary>
+<h3>Spanish</h3>
+</summary>
+
+1. sentence spaninsh
+2. sentence audio
+3. sentence english
+4. word spanish
+5. word audio
+6. word english
+7. word type
+8. notes
+9. image
+</details>
