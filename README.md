@@ -3,6 +3,16 @@ This is a collection of card templates for studying vocabulary in different lang
 
 If you're coming from using vocabulary cards, watch [this video](https://youtu.be/GLfmKWhLhjk) comparing vocabulary to sentence cards. It suggests using a mix of both - vocabulary for concrete nouns and sentences for others - but these templates currently only support sentences. I might modify them to also support single words when no sentence is provided.
 
+<table>
+  <tr>
+    <td><img src="./_images/Japanese_example.png"/></td>
+    <td><img src="./_images/Japanese_example2.png"/></td>
+  </tr><tr>
+    <td><img src="./_images/Chinese_example.png"/></td>
+    <td><img src="./_images/Spanish_example.png"/></td>
+  </tr>
+</table>
+
 ## Installation
 Anki doesn't keep its templates as simple HTML and CSS files on the filesystem for some reason, but you can copy-and-paste the code manually. It's not much effort anyway.
 
